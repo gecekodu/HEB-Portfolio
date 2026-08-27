@@ -25,6 +25,8 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
+      smoothTouch: true,
+      syncTouch: true,
       wheelMultiplier: 0.9,
       touchMultiplier: 1.5,
     });
@@ -51,3 +53,5 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
 
   return <>{children}</>;
 }
+
+
