@@ -36,3 +36,21 @@ button:focus-visible,a:focus-visible { outline:2px solid var(--orange); outline-
 @media (max-width:760px) { .virtual-tours-heading{grid-template-columns:1fr}.tour-grid{grid-template-columns:1fr;margin-top:42px}.tour-card{box-shadow:7px 8px 0 var(--orange)}.tour-card:nth-child(3n+2){box-shadow:7px 8px 0 var(--lime)}.tour-card iframe{height:280px} }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
+
+/* Project area: a restrained editorial presentation that belongs to the portfolio. */
+main { display:flex; flex-direction:column; }
+.site-header { order:0; }.hero { order:1; }.about { order:2; }.projects { order:3; }.profile { order:4; }.skills { order:5; }.certificates { order:6; }.virtual-tours { order:7; }.contact { order:8; }
+.projects { background:var(--paper); color:var(--ink); }
+.projects .section-label,.projects .section-heading span { color:var(--muted); }
+.project-tabs { gap:0; margin:46px 0 0; border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); }
+.project-tabs button { flex:1 1 150px; min-height:62px; padding:0 16px; border-right:1px solid var(--ink); border-bottom:0; color:var(--ink); text-align:left; }
+.project-tabs button:first-child { border-left:1px solid var(--ink); }
+.project-tabs button:hover,.project-tabs button.active { color:var(--ink); background:var(--lime); }
+.project-tabs button.active { box-shadow:inset 0 -3px 0 var(--orange); }
+.project-feature { grid-template-columns:minmax(240px,.62fr) minmax(400px,1.38fr); gap:clamp(36px,7vw,120px); padding-top:clamp(38px,5vw,72px); align-items:start; }
+.project-meta { padding-top:6px; }.project-meta p { color:var(--orange); }.project-meta>span { color:#50535a; }.project-meta small { color:var(--ink); }
+.button-light { border:1px solid var(--ink); }
+.browser-gallery { min-height:400px; border:1px solid var(--ink); background:#e7e1d8; }
+.browser-gallery figure,.phone-gallery figure { box-shadow:none; }.browser-gallery figure { border:0; }.browser-gallery .main-shot { inset:0; }.browser-gallery .detail-shot { width:36%; bottom:22px; left:22px; border:1px solid var(--ink); }
+.phone-gallery { min-height:430px; border:1px solid var(--ink); background:#e7e1d8; }.phone-gallery figure { box-shadow:0 18px 28px rgba(24,26,31,.2),6px 7px 0 var(--orange),inset 0 0 0 2px rgba(255,255,255,.08),inset -7px -8px 14px rgba(0,0,0,.5); }
+@media (max-width:760px) { .project-tabs { margin-top:36px; }.project-tabs button { flex-basis:calc(50% + 1px); min-height:54px; padding:0 12px; }.project-feature { padding-top:36px; }.browser-gallery,.phone-gallery { min-height:330px; }.browser-gallery .detail-shot { bottom:14px; left:14px; }.phone-gallery figure { box-shadow:0 18px 28px rgba(24,26,31,.2),5px 6px 0 var(--orange),inset 0 0 0 1px rgba(255,255,255,.08); } }
