@@ -4,7 +4,7 @@ import SmoothScroll from "@/components/dom/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "Hasan Emre Bircan — Portfolyo",
-  description: "Hasan Emre Bircan'ın yazılım, web projeleri, deneyim ve sertifika portfolyosu.",
+  description: "Hasan Emre Bircan'ın web projeleri, staj deneyimi, TEKNOFEST çalışmaları ve teknik gelişim portfolyosu.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
