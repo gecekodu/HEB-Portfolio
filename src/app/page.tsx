@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import { ArrowDownRight, ArrowUp, ChevronDown, Download, ExternalLink, Github, Menu, X } from "lucide-react";
+import { ArrowDownRight, ArrowUp, ChevronDown, Download, ExternalLink, FileText, Github, Linkedin, Menu, X } from "lucide-react";
 import { useLanguageStore } from "@/store/useLanguageStore";
 import portrait from "@/images/me.jpeg";
 import kaizenSite from "@/images/my project/kaizen-site.png";
@@ -15,18 +15,21 @@ import sutolsProject from "@/images/my project/sutols/sutols-project.png";
 import sutolsSlide from "@/images/my project/sutols/slade.png";
 import asdoguSite from "@/images/my project/asdogu-site.png";
 import aspirSite from "@/images/my project/aspir-site.png";
+import iotHardware from "@/images/my project/iot-hardware.png";
+import iotDashboard from "@/images/my project/iot-dashboard.png";
 
-type ProjectVisual = { href: string; githubHref?: string; images: StaticImageData[]; layout: "phone" | "browser" };
+type ProjectVisual = { href?: string; appStoreHref?: string; githubHref?: string; reportHref?: string; images: StaticImageData[]; layout: "phone" | "browser" };
 type PdfView = { src: string; title: string };
 type VirtualTour = { src: string };
 
 const projectVisuals: ProjectVisual[] = [
-  { href: "https://play.google.com/store/apps/details?id=birdev.nemos", githubHref: "https://github.com/gecekodu/NemosApp", images: [nemos1, nemos2, nemos3, nemos4], layout: "phone" },
+  { href: "https://play.google.com/store/apps/details?id=birdev.nemos", appStoreHref: "https://apps.apple.com/tr/app/nemos-e%C4%9Fitici-oyun-platformu/id6799118981", githubHref: "https://github.com/gecekodu/NemosApp", images: [nemos1, nemos2, nemos3, nemos4], layout: "phone" },
   { href: "https://sutols.com", images: [sutolsProject, sutolsSlide], layout: "browser" },
   { href: "https://tsgldernegi.org.tr", images: [tsglSite], layout: "browser" },
   { href: "https://kaizenotel.com", images: [kaizenSite], layout: "browser" },
   { href: "https://web.asdogunakliyat.com/", images: [asdoguSite], layout: "browser" },
   { href: "https://web.aspirpetrol.com/", images: [aspirSite], layout: "browser" },
+  { reportHref: "projects/iot-kestirimci-bakim-proje-raporu.pdf", images: [iotHardware, iotDashboard], layout: "browser" },
 ];
 
 const virtualTours: VirtualTour[] = [
@@ -43,6 +46,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showCv, setShowCv] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState<PdfView | null>(null);
+  const [selectedProjectReport, setSelectedProjectReport] = useState<PdfView | null>(null);
   const [virtualToursOpen, setVirtualToursOpen] = useState(false);
   const [certificatesOpen, setCertificatesOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -65,11 +69,11 @@ export default function Home() {
       <div className="header-actions"><button className="language-toggle" onClick={() => setLanguage(lang === "TR" ? "EN" : "TR")}>{lang}</button><button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menüyü aç veya kapat">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button></div>
     </header>
 
-    <section className="hero" id="top"><div className="hero-copy"><p className="section-label">{t.hero.name} / 2026</p><h1 className={lang === "TR" ? "hero-title-tr" : undefined}>{t.hero.title.split("\n").map((line, index) => <span key={line} className={index === 1 ? "title-second-line" : undefined}>{line}</span>)}</h1><p>{t.about.text}</p><div className="hero-actions"><a className="button button-dark" href="#projects">{t.nav.work} <ArrowDownRight size={17} /></a><button className="text-action" onClick={() => setShowCv(true)}><Download size={16} /> {t.nav.cv}</button></div></div><div className="hero-portrait"><Image src={portrait} alt="Hasan Emre Bircan" priority quality={100} sizes="(max-width: 760px) 86vw, 34vw" /><span>{t.hero.role}</span></div><a className="scroll-prompt" href="#about">{t.hero.scroll}</a></section>
+    <section className="hero" id="top"><div className="hero-copy"><p className="section-label">{t.hero.name} / 2026</p><h1 className={lang === "TR" ? "hero-title-tr" : undefined}>{t.hero.title.split("\n").map((line, index) => <span key={line} className={index === 1 ? "title-second-line" : undefined}>{line}</span>)}</h1><p>{t.hero.intro}</p><div className="hero-actions"><a className="button button-dark" href="#projects">{t.nav.work} <ArrowDownRight size={17} /></a><button className="text-action" onClick={() => setShowCv(true)}><Download size={16} /> {t.nav.cv}</button></div></div><div className="hero-portrait"><Image src={portrait} alt="Hasan Emre Bircan" priority quality={100} sizes="(max-width: 760px) 86vw, 34vw" /><span>{t.hero.role}</span></div><a className="scroll-prompt" href="#about">{t.hero.scroll}</a></section>
 
-    <section className="about section" id="about"><div className="about-grid"><h2>{lang === "TR" ? "Fikirleri kullanılabilir dijital deneyimlere dönüştürüyorum." : "I turn ideas into usable digital experiences."}</h2><div><p>{t.about.text}</p><dl className="facts"><div><dt>{lang === "TR" ? "KONUM" : "LOCATION"}</dt><dd>Mersin, TR</dd></div><div><dt>{lang === "TR" ? "ODAK" : "FOCUS"}</dt><dd>{t.hero.role}</dd></div><div><dt>{lang === "TR" ? "EĞİTİM" : "EDUCATION"}</dt><dd>Sivas Cumhuriyet University</dd></div></dl><a className="about-github" href="https://github.com/gecekodu" target="_blank" rel="noreferrer">GITHUB <Github size={16} /></a></div></div></section>
+    <section className="about section" id="about"><div className="about-grid"><h2>{lang === "TR" ? "Yapay zekâyı gerçek problemlere uygulamayı hedefliyorum." : "I aim to apply AI to real-world problems."}</h2><div><p>{t.about.text}</p><dl className="facts"><div><dt>{lang === "TR" ? "KONUM" : "LOCATION"}</dt><dd>Mersin, TR</dd></div><div><dt>{lang === "TR" ? "ODAK" : "FOCUS"}</dt><dd>{t.hero.role}</dd></div><div><dt>{lang === "TR" ? "EĞİTİM" : "EDUCATION"}</dt><dd>Sivas Cumhuriyet University</dd></div></dl><div className="about-links"><a className="social-link" href="https://github.com/gecekodu" target="_blank" rel="noreferrer">GITHUB <Github size={16} /></a><a className="social-link" href="https://www.linkedin.com/in/hasan-emre-bircan" target="_blank" rel="noreferrer">LINKEDIN <Linkedin size={16} /></a></div></div></div></section>
 
-    <section className="projects section" id="projects"><div className="section-heading"><p className="section-label">{t.projects.label}</p><span>{String(selectedProject + 1).padStart(2, "0")} / {String(t.projects.items.length).padStart(2, "0")}</span></div><div className="project-tabs" role="tablist" aria-label={t.projects.label}>{t.projects.items.map((item, index) => <button key={item.title} className={index === selectedProject ? "active" : ""} onClick={() => setSelectedProject(index)}>{item.title}</button>)}</div><article className="project-feature"><div className="project-meta"><p>{project.year} / {project.type}</p><h2>{project.title}</h2><span>{project.description}</span><small>{project.tech}</small><div className="project-links"><a className="button button-light" href={project.visual.href} target="_blank" rel="noreferrer">{t.projects.view} <ExternalLink size={16} /></a>{project.visual.githubHref && <a className="button button-outline" href={project.visual.githubHref} target="_blank" rel="noreferrer">GITHUB <Github size={16} /></a>}</div></div><ProjectPreview project={project.visual} title={project.title} /></article></section>
+    <section className="projects section" id="projects"><div className="section-heading"><p className="section-label">{t.projects.label}</p><span>{String(selectedProject + 1).padStart(2, "0")} / {String(t.projects.items.length).padStart(2, "0")}</span></div><div className="project-tabs" role="tablist" aria-label={t.projects.label}>{t.projects.items.map((item, index) => <button key={item.title} className={index === selectedProject ? "active" : ""} onClick={() => setSelectedProject(index)}>{item.title}</button>)}</div><article className="project-feature"><div className="project-meta"><p>{project.year} / {project.type}</p><h2>{project.title}</h2><span>{project.description}</span><small>{project.tech}</small>{project.visual.reportHref && <ul className="project-highlights">{t.projects.iotHighlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>}<div className="project-links">{project.visual.href && <a className="button button-light" href={project.visual.href} target="_blank" rel="noreferrer">{project.visual.appStoreHref ? t.projects.playStore : t.projects.view} <ExternalLink size={16} /></a>}{project.visual.reportHref && <button className="button button-light" onClick={() => setSelectedProjectReport({ src: `${project.visual.reportHref}#view=FitH`, title: project.title })}>{t.projects.report} <FileText size={16} /></button>}{project.visual.reportHref && <a className="button button-outline" href={project.visual.reportHref} download>{t.projects.download} <Download size={16} /></a>}{project.visual.appStoreHref && <a className="button button-dark" href={project.visual.appStoreHref} target="_blank" rel="noreferrer">{t.projects.appStore} <ExternalLink size={16} /></a>}{project.visual.githubHref && <a className="button button-outline" href={project.visual.githubHref} target="_blank" rel="noreferrer">GITHUB <Github size={16} /></a>}</div></div><ProjectPreview project={project.visual} title={project.title} /></article></section>
 
     <section className="profile section" id="profile"><p className="section-label">{t.profile.label}</p><div className="timeline">{t.profile.items.map((item) => <article key={item.title}><span>{item.year}</span><div><p>{item.type === "education" ? t.profile.education : t.profile.experience}</p><h3>{item.title}</h3><h4>{item.org}</h4><small>{item.text}</small></div></article>)}</div></section>
     <section className="certificates section" id="certificates"><button className="collapsible-heading" type="button" onClick={() => setCertificatesOpen(!certificatesOpen)} aria-expanded={certificatesOpen} aria-controls="certificates-content"><div><p className="section-label">{t.certificates.label}</p><h2>{t.certificates.institution}</h2></div><span className="collapsible-toggle" aria-hidden="true"><ChevronDown size={24} /></span></button>{certificatesOpen && <div id="certificates-content" className="collapsible-content"><p className="section-summary">{t.certificates.summary}</p><div className="certificate-grid">{t.certificates.items.map((item, index) => { const src = `certificates/${encodeURIComponent(item.file)}#view=FitH`; const openCertificate = () => setSelectedCertificate({ src, title: item.title }); return <article className="certificate-card" key={item.file}><div className="certificate-card-header"><span>{String(index + 1).padStart(2, "0")}</span><strong>{item.title}</strong><button onClick={openCertificate} aria-label={`${item.title} büyük aç`}><ExternalLink size={17} /></button></div><div className="certificate-preview"><iframe src={src} title={item.title} loading="lazy" /></div></article>; })}</div></div>}</section>
@@ -79,6 +83,7 @@ export default function Home() {
     <button className={showScrollTop ? "scroll-top visible" : "scroll-top"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Yukarı çık"><ArrowUp size={19} /></button>
     {showCv && <PdfModal title="CV" src="H.EmreBircanCV.pdf#view=FitH" externalHref="H.EmreBircanCV.pdf" onClose={() => setShowCv(false)} />}
     {selectedCertificate && <PdfModal title={selectedCertificate.title} src={selectedCertificate.src} externalHref={selectedCertificate.src} onClose={() => setSelectedCertificate(null)} />}
+    {selectedProjectReport && <PdfModal title={selectedProjectReport.title} src={selectedProjectReport.src} externalHref={selectedProjectReport.src} onClose={() => setSelectedProjectReport(null)} />}
   </main>;
 }
 
