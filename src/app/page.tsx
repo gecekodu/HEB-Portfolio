@@ -64,7 +64,7 @@ export default function Home() {
     <header className="site-header">
       <a className="wordmark" href="#top" onClick={closeMenu}>HEB<span>.</span></a>
       <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Ana navigasyon">
-        <a href="#about" onClick={closeMenu}>{t.nav.about}</a><a href="#projects" onClick={closeMenu}>{t.nav.work}</a><a href="#profile" onClick={closeMenu}>{t.nav.profile}</a><a href="#certificates" onClick={closeMenu}>{t.nav.certificates}</a><a href="#contact" onClick={closeMenu}>{t.nav.contact}</a>
+        <a href="#about" onClick={closeMenu}>{t.nav.about}</a><a href="#projects" onClick={closeMenu}>{t.nav.work}</a><a href="#profile" onClick={closeMenu}>{t.nav.profile}</a><a href="#certificates" onClick={closeMenu}>{t.nav.certificates}</a><a href="#contact" onClick={closeMenu}>{t.nav.contact}</a><button type="button" onClick={() => { setShowCv(true); closeMenu(); }}>CV</button>
       </nav>
       <div className="header-actions"><button className="language-toggle" onClick={() => setLanguage(lang === "TR" ? "EN" : "TR")}>{lang}</button><button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menüyü aç veya kapat">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button></div>
     </header>

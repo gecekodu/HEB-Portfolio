@@ -12,7 +12,7 @@ a { text-decoration:none; }
 button:focus-visible,a:focus-visible { outline:2px solid var(--orange); outline-offset:4px; }
 .site-header { min-height:76px; padding:0 clamp(20px,4vw,66px); display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); background:var(--paper); position:sticky; top:0; z-index:10; }
 .wordmark { font-size:25px; font-weight:900; letter-spacing:-.08em; }.wordmark span { color:var(--orange); }
-.nav-links { display:flex; align-items:center; gap:clamp(16px,2.8vw,43px); }.nav-links a,.language-toggle { font-size:11px; font-weight:800; letter-spacing:.08em; }.nav-links a:hover { color:var(--orange); }
+.nav-links { display:flex; align-items:center; gap:clamp(16px,2.8vw,43px); }.nav-links a,.nav-links button,.language-toggle { font-size:11px; font-weight:800; letter-spacing:.08em; }.nav-links button { padding:0; border:0; background:transparent; }.nav-links a:hover,.nav-links button:hover { color:var(--orange); }
 .header-actions { display:flex; align-items:center; gap:15px; }.language-toggle,.menu-toggle { border:0; background:transparent; }.language-toggle { padding:8px 0; }.menu-toggle { display:none; padding:7px; }
 .hero { min-height:calc(88vh - 76px); display:grid; grid-template-columns:minmax(0,1.16fr) minmax(280px,.72fr); position:relative; border-bottom:1px solid var(--line); }.hero>* { min-width:0; }
 .hero-copy { padding:clamp(50px,8vw,118px) clamp(20px,7vw,118px) 86px clamp(20px,6vw,100px); align-self:center; }.section-label { margin:0; font-size:10px; font-weight:800; letter-spacing:.12em; color:var(--muted); }
